@@ -1,6 +1,7 @@
 import React from "react";
 import HeartIcon from "./Icons/HeartIcon";
 import data from "../data";
+import Link from "next/link";
 
 const TopCharts = () => {
   return (
@@ -11,6 +12,11 @@ const TopCharts = () => {
       <div className="flex gap-4 lg:flex-col flex-row overflow-x-auto scrollbar-hide shrink-0">
         {data.playlist[2].items.map((item, index) => {
           return (
+            <Link
+            key={index}
+            href={{ pathname: "/album", query: { anything: index, something: 2 } }}
+          >
+        
             <TopChart
               title={item.track.name}
               artist={item.track.artists[0].name}
@@ -18,6 +24,7 @@ const TopCharts = () => {
               duration={item.track.duration_ms}
               key={index}
             />
+            </Link>
           );
         })}
         {/* <TopChart
@@ -47,6 +54,8 @@ export default TopCharts;
 
 const TopChart = ({ title, artist, duration, img }) => {
   return (
+
+  
     <div className="flex flex-row items-center md:justify-between p-4 rounded-2xl bg-bg2 lg:w-full w-[223px] shrink-0 ">
       <div className="flex lg:items-center items-start  lg:flex-row  flex-col lg:mr-0 justify-start w-full ">
         <div className="">
@@ -64,5 +73,6 @@ const TopChart = ({ title, artist, duration, img }) => {
         <HeartIcon />
       </div>
     </div>
+    
   );
 };

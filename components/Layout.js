@@ -1,15 +1,14 @@
 import React from "react";
-import LeftMenu from "./LeftMenu";
+
 import Header from "./Header";
-import Menu from "./Menu";
 import MusicPlayer from "./MusicPlayer";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, playingNow }) => {
   return (
     <div>
       <Header />
       <div>{children}</div>
-      <MusicPlayer/>
+      <MusicPlayer playingNow={playingNow}/>
     </div>
   );
 };

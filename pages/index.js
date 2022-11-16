@@ -8,9 +8,11 @@ import TopCharts from "../components/TopCharts";
 import NewRelease from "../components/NewRelease";
 import Popular from "../components/Popular";
 import data from '../data'
+import Layout from "../components/Layout";
 
 export default function Home() {
   return (
+    <Layout playingNow={data.playlist[0].items[0]}>
     <div className="max-w-[1440px] lg:m-8 md:m-8 relative">
       
 
@@ -30,5 +32,6 @@ export default function Home() {
       <Popular />
      
     </div>
+    </Layout>
   );
 }

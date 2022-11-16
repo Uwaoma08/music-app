@@ -1,8 +1,11 @@
 import React from "react";
+import Layout from "../components/Layout";
 import LeftMenu from "../components/LeftMenu";
+import data from "../data";
 
 const myCollections = () => {
   return (
+    <Layout playingNow={data.playlist[0].items[0]}>
     <div className="flex flex-row w-full gap-6 ">
       <div className="lg:block md:block hidden">
         <LeftMenu />
@@ -26,6 +29,7 @@ const myCollections = () => {
         </div>
       </div>
     </div>
+    </Layout>
   );
 };
 

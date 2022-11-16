@@ -4,19 +4,22 @@ import AllSongsMobile from "../components/AllSongsMobile";
 import AllSongsDesktop from "../components/AllSongsDesktop";
 import data from "../data";
 import { useRouter } from "next/router";
+import Layout from "../components/Layout";
 
 
 const album = () => {
 
-const [activeItem, setActiveItem] = useState(data.playlist[0].items[0])
+  
+  const router = useRouter()
+  const {anything, anotherthing, something} = router.query;
 
-const router = useRouter()
-const datar = router.query;
+  const [activeItem, setActiveItem] = useState(data.playlist[anotherthing || something || 0].items[anything || 0 ])
 
-console.log(datar)
+  console.log(activeItem);
 
   return (
-    <>
+    <Layout playingNow={activeItem}>
+      
       <img
         src={activeItem.track.album.images[0].url}
         className=" lg:hidden md:hidden absolute top-0 left-0 z-1 w-full  "
@@ -109,7 +112,7 @@ console.log(datar)
           
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

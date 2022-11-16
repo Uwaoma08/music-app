@@ -23,6 +23,7 @@ const Hero = () => {
         </div>
 
         <div className="flex lg:flex-row flex-col  mt-10 md:w-[60%]  lg:w-[80%]">
+          
           <div className="flex flex-row items-center mb-4 lg:mb-0 md:mb-0 lg:mr-8">
             <img src="/likeImage1.svg" />
             <img src="/likeImage2.svg" className="ml-[-20px]" />

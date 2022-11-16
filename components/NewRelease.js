@@ -12,13 +12,15 @@ const NewRelease = () => {
       <div className="flex flex-row gap-4 overflow-x-auto scrollbar-hide">
         {data.playlist[0].items.map((item, index) => {
           return (
-            <Link href={{pathname: "/album", query: 1}}>
+            <Link
+              key={index}
+              href={{ pathname: "/album", query: { anything: index } }}
+            >
               {" "}
               <Release
                 title={item.track.name}
                 artist={item.track.artists[0].name}
                 img={item.track.album.images[0].url}
-                key={index}
               />
             </Link>
           );
