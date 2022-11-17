@@ -5,6 +5,7 @@ import data from "../data";
 const MusicPlayer = ({ playingNow }) => {
   const [songs, setSongs] = useState(playingNow.track.preview_url);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentSong, setCurrentSong] = useState(playingNow.track.preview_url);
 
   // console.log(playingNow);
 
@@ -17,18 +18,33 @@ const MusicPlayer = ({ playingNow }) => {
   }, [isPlaying]);
 
   const audioElem = useRef();
+  const clickRef = useRef();
 
   const PlayPause = () => {
     setIsPlaying(!isPlaying);
   };
 
+  const onPlaying = () => {
+    const duration = audioElem.current.duration;
+    const currentTime = audioElem.current.currentTime;
+
+    setCurrentSong({
+      ...currentSong,
+      progress: (currentTime / duration) * 100,
+      length: duration,
+    });
+  };
+
+  const checkWidth = (e) => {
+    let width = clickRef.current.clientWidth;
+    const offset = e.nativeEvent.offsetX;
+    const divprogress = offset / width * 100;
+    audioElem.current.currentTime = divprogress / 100 * currentSong.length;
+  };
+
   return (
     <>
-      <audio
-        src={songs}
-        ref={audioElem}
-        
-      />
+      <audio src={songs} ref={audioElem} onTimeUpdate={onPlaying} />
       {/* <div className="h-[125px] bg-[#1E1E1E] opacity-95 mt-10 max-w-[1440px] fixed bottom-0 left-0 right-0 px-10"></div> */}
       {playingNow && (
         <div className="h-[125px] bg-[#1E1E1E]/50 opacity-95 mt-10 max-w-[1440px] fixed bottom-0 left-0 right-0 px-10 backdrop-blur-xl z-50">
@@ -51,9 +67,15 @@ const MusicPlayer = ({ playingNow }) => {
               <img src="/shuffle.svg" className=" lg:block md:block hidden" />
               <img src="/previous.svg" />
 
-              <div className="bg-yellow-400 text-center rounded-full h-6 w-6 flex items-center justify-center" onClick={PlayPause}>
-                {isPlaying ? <FaPause className="text-white text-xs" /> :  <FaPlay className="text-white text-xs" />
-               }
+              <div
+                className="bg-yellow-400 text-center rounded-full h-6 lg:w-6 md:w-6 w-[54px] flex items-center justify-center"
+                onClick={PlayPause}
+              >
+                {isPlaying ? (
+                  <FaPause className="text-white text-xs" />
+                ) : (
+                  <FaPlay className="text-white text-xs" />
+                )}
               </div>
 
               <img src="/next.svg" className="  " />
@@ -64,11 +86,17 @@ const MusicPlayer = ({ playingNow }) => {
               <img src="/volumeBar.svg" className="lg:block md:block hidden" />
             </div>
           </div>
-          <div className="flex justify-center mt-4  ">
-            <img
-              src="/playRectangle.svg"
-              className="lg:block md:block hidden"
-            />
+          <div className="flex justify-center mt-4 w-full ">
+            <div
+              className="navigation_wrapper"
+              onClick={checkWidth}
+              ref={clickRef}
+            >
+              <div
+                className="seek_bar"
+                style={{ width: currentSong.progress + "%" }}
+              ></div>
+            </div>
           </div>
         </div>
       )}
