@@ -7,7 +7,15 @@ import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 
 
+
 const album = () => {
+  
+  function convertTime(newTime){
+    return new Date(newTime).toTimeString().slice(3, 9);
+
+  }
+
+  console.log(convertTime)
 
   
   const router = useRouter()
@@ -85,7 +93,7 @@ const album = () => {
               artist={item.track.artists[0].name}
               img={item.track.album.images[0].url}
               key={index}
-              duration={item.track.duration_ms}
+              duration={convertTime(item.track.duration_ms)}
               onClick={()=>setActiveItem(item)}
             />
             )
@@ -102,7 +110,7 @@ const album = () => {
               artist={item.track.artists[0].name}
               img={item.track.album.images[0].url}
               key={index}
-              duration={item.track.duration_ms}
+              duration={convertTime(item.track.duration_ms)}
               onClick={()=>setActiveItem(item)}
             
             />

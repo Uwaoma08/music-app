@@ -41,15 +41,18 @@ const MusicPlayer = ({ playingNow }) => {
     const divprogress = offset / width * 100;
     audioElem.current.currentTime = divprogress / 100 * currentSong.length;
   };
+  let newData = data.playlist[0].items[0].track.duration_ms
+
+
 
   return (
     <>
       <audio src={songs} ref={audioElem} onTimeUpdate={onPlaying} />
       {/* <div className="h-[125px] bg-[#1E1E1E] opacity-95 mt-10 max-w-[1440px] fixed bottom-0 left-0 right-0 px-10"></div> */}
       {playingNow && (
-        <div className="h-[150px] bg-[#1E1E1E]/50 opacity-95 mt-10 max-w-[1440px] fixed bottom-0 left-0 right-0 px-10 backdrop-blur-xl z-50">
-          <div className="flex lg:flex-row md:flex-row flex-col items-center justify-between lg:px-5 md:px-5 px-0 lg:mt-4 md:mt-4 mt-2  lg:gap-20 md:gap-20 gap-4">
-            <div className="flex flex-row items-center   ">
+        <div className="h-[123px] bg-[#1E1E1E]/50 opacity-95 mt-10 max-w-[1440px] fixed bottom-0 left-0 right-0 px-10 backdrop-blur-xl z-50">
+          <div className="flex lg:flex-row md:flex-row flex-col items-center justify-between lg:px-5 md:px-5 px-0 mt-4  lg:gap-20 md:gap-20 gap-4">
+            <div className=" flex-row items-center lg:flex md:flex hidden   ">
               <img
                 className="lg:h-[63px] h-[50px] rounded-2xl"
                 src={playingNow.track.album.images[0].url}
