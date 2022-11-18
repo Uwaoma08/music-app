@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const TopCharts = () => {
   return (
-    <div className=" relative ">
+    <div className=" relative lg:mt-0 mt-10 ">
       <h1 className="text-white text-2xl font-bold mb-4 text-center md:mb-10 lg:mb-4">
         Top charts
       </h1>

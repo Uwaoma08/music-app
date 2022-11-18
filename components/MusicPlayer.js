@@ -3,12 +3,13 @@ import { FaPause, FaPlay } from "react-icons/fa";
 import data from "../data";
 
 const MusicPlayer = ({ playingNow }) => {
-  const [songs, setSongs] = useState(playingNow.track.preview_url);
+  const songs = playingNow.track.preview_url;
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentSong, setCurrentSong] = useState(playingNow.track.preview_url);
+  const [currentSong, setCurrentSong] = useState({});
 
-  // console.log(playingNow);
-
+  // console.log(data.playlist[0].items[0].track.preview_url);
+  console.log(currentSong, songs);
+ 
   useEffect(() => {
     if (isPlaying) {
       audioElem.current.play();
@@ -41,16 +42,23 @@ const MusicPlayer = ({ playingNow }) => {
     const divprogress = offset / width * 100;
     audioElem.current.currentTime = divprogress / 100 * currentSong.length;
   };
-  let newData = data.playlist[0].items[0].track.duration_ms
-
-
+  
+  // const skipBack = ()=>{
+  //   const index = songs.findIndex( x =>x.title == currentSong.title);
+  //   if(index == 0){
+  //     setCurrentSong(songs[songs.length - 1])
+  //   }else {
+  //     setCurrentSong(songs[index - 1])
+  //   }
+  //   audioElem.current.currentTime = 0
+  // }
 
   return (
     <>
       <audio src={songs} ref={audioElem} onTimeUpdate={onPlaying} />
       {/* <div className="h-[125px] bg-[#1E1E1E] opacity-95 mt-10 max-w-[1440px] fixed bottom-0 left-0 right-0 px-10"></div> */}
       {playingNow && (
-        <div className="h-[123px] bg-[#1E1E1E]/50 opacity-95 mt-10 max-w-[1440px] fixed bottom-0 left-0 right-0 px-10 backdrop-blur-xl z-50">
+        <div className="h-[123px] bg-[#1E1E1E]/50 opacity-95 mt-8 max-w-[1440px] fixed bottom-0 left-0 right-0 px-10 backdrop-blur-xl z-50">
           <div className="flex lg:flex-row md:flex-row flex-col items-center justify-between lg:px-5 md:px-5 px-0 mt-4  lg:gap-20 md:gap-20 gap-4">
             <div className=" flex-row items-center lg:flex md:flex hidden   ">
               <img
@@ -68,7 +76,7 @@ const MusicPlayer = ({ playingNow }) => {
             </div>
             <div className=" flex flex-row gap-6">
               <img src="/shuffle.svg"  />
-              <img src="/previous.svg" />
+              <img src="/previous.svg"  />
 
               <div
                 className="bg-yellow-400 text-center rounded-full p-2 flex items-center justify-center"
@@ -91,7 +99,7 @@ const MusicPlayer = ({ playingNow }) => {
 
             
           </div>
-          <div className="flex justify-center lg:mt-10 md:mt-10 mt-4 w-full ">
+          <div className="flex justify-center lg:mt-6 md:mt-10 mt-4 w-full ">
             <div
               className="navigation_wrapper"
               onClick={checkWidth}
