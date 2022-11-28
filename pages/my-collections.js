@@ -5,7 +5,7 @@ import data from "../data";
 
 const myCollections = () => {
   return (
-    <Layout playingNow={data.playlist[0].items[0]}>
+    <Layout playingNow={data}>
     <div className="flex flex-row w-full gap-6 ">
       <div className="lg:block md:block hidden">
         <LeftMenu />

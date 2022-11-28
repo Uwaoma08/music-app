@@ -2,13 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import data from "../data";
 
-const MusicPlayer = ({ playingNow }) => {
-  const songs = playingNow.track.preview_url;
+
+const MusicPlayer = ({ playingNow}) => {
+  const songs = playingNow.hub.actions[1].uri;
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState({});
 
-  // console.log(data.playlist[0].items[0].track.preview_url);
-  console.log(currentSong, songs);
+  console.log(playingNow.hub.actions[1].uri);
+//   console.log(currentSong, songs);
  
   useEffect(() => {
     if (isPlaying) {
@@ -43,15 +44,15 @@ const MusicPlayer = ({ playingNow }) => {
     audioElem.current.currentTime = divprogress / 100 * currentSong.length;
   };
   
-  // const skipBack = ()=>{
-  //   const index = songs.findIndex( x =>x.title == currentSong.title);
-  //   if(index == 0){
-  //     setCurrentSong(songs[songs.length - 1])
-  //   }else {
-  //     setCurrentSong(songs[index - 1])
-  //   }
-  //   audioElem.current.currentTime = 0
-  // }
+  const skipBack = ()=>{
+    const index = songs.findIndex( x =>x.title == currentSong.title);
+    if(index == 0){
+      setCurrentSong(songs[songs.length - 1])
+    }else {
+      setCurrentSong(songs[index - 1])
+    }
+    audioElem.current.currentTime = 0
+  }
 
   return (
     <>
@@ -63,20 +64,20 @@ const MusicPlayer = ({ playingNow }) => {
             <div className=" flex-row items-center lg:flex md:flex hidden   ">
               <img
                 className="lg:h-[63px] h-[50px] rounded-2xl"
-                src={playingNow.track.album.images[0].url}
+                src={playingNow.images.background}
               />
               <div className="ml-4">
                 <h3 className="text-lg text-white leading-5">
-                  {playingNow.track.name}
+                   {playingNow.title} 
                 </h3>
                 <p className="text-gray-500 text-base">
-                  {playingNow.track.artists[0].name}
+                  {playingNow.artists[0].alias} 
                 </p>
               </div>
             </div>
             <div className=" flex flex-row gap-6">
               <img src="/shuffle.svg"  />
-              <img src="/previous.svg"  />
+              <img src="/previous.svg" onClick={skipBack} />
 
               <div
                 className="bg-yellow-400 text-center rounded-full p-2 flex items-center justify-center"

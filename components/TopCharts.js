@@ -10,18 +10,18 @@ const TopCharts = () => {
         Top charts
       </h1>
       <div className="flex gap-4 lg:flex-col flex-row overflow-x-auto scrollbar-hide shrink-0">
-        {data.playlist[2].items.map((item, index) => {
+        {data.map((item, index) => {
           return (
             <Link
             key={index}
-            href={{ pathname: "/album", query: { anything: index, something: 2 } }}
+            href={{ pathname: "/album", query: { anything: index} }}
           >
         
             <TopChart
-              title={item.track.name}
-              artist={item.track.artists[0].name}
-              img={item.track.album.images[0].url}
-              duration={item.track.duration_ms}
+              title={item.title}
+              artist={item.artists[0].alias}
+              img={item.images.background}
+              // duration={item.track.duration_ms}
               key={index}
             />
             </Link>

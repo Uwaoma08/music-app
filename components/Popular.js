@@ -10,17 +10,17 @@ const Popular = () => {
         Popular in your area
       </h1>
       <div className="flex flex-row gap-4 overflow-x-auto scrollbar-hide">
-        {data.playlist[1].items.map((item, index) => {
+        {data.map((item, index) => {
           return (
             <Link
               key={index}
-              href={{ pathname: "/album", query: {anything: index, anotherthing: 1 } }}
+              href={{ pathname: "/album", query: {anything: index } }}
             >
               {" "}
               <Release
-                title={item.track.name}
-                artist={item.track.artists[0].name}
-                img={item.track.album.images[0].url}
+                title={item.title}
+                artist={item.artists[0].alias}
+                img={item.images.background}
                 key={index}
               />
             </Link>
