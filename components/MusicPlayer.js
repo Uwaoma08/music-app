@@ -4,12 +4,12 @@ import data from "../data";
 
 
 const MusicPlayer = ({ playingNow}) => {
-  const songs = playingNow.hub.actions[1].uri;
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState({});
-
-  console.log(playingNow.hub.actions[1].uri);
-//   console.log(currentSong, songs);
+  const audioElem = useRef();
+  const clickRef = useRef();
+  const songs = playingNow.hub.actions[1].uri;
+ 
  
   useEffect(() => {
     if (isPlaying) {
@@ -19,8 +19,11 @@ const MusicPlayer = ({ playingNow}) => {
     }
   }, [isPlaying]);
 
-  const audioElem = useRef();
-  const clickRef = useRef();
+
+  // if(!playingNow || playingNow.hub === 'undefined' || playingNow.hub.actions[1] === 'undefined') return <></>
+  
+
+
 
   const PlayPause = () => {
     setIsPlaying(!isPlaying);

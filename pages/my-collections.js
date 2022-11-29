@@ -3,9 +3,11 @@ import Layout from "../components/Layout";
 import LeftMenu from "../components/LeftMenu";
 import data from "../data";
 
+  
 const MyCollections = () => {
+
   return (
-    <Layout playingNow={data}>
+    <Layout playingNow={data[0]}>
     <div className="flex flex-row w-full gap-6 ">
       <div className="lg:block md:block hidden">
         <LeftMenu />
