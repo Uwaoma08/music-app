@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const TopCharts = () => {
   return (
-    <div className=" relative lg:mt-0 mt-10 ">
+    <div className=" relative lg:mt-0 mt-10  ">
       <h1 className="text-white text-2xl font-bold mb-4 text-center md:mb-10 lg:mb-4">
         Top charts
       </h1>
@@ -27,24 +27,7 @@ const TopCharts = () => {
             </Link>
           );
         })}
-        {/* <TopChart
-          title="Reggae “n” blues"
-          artist="Dj YK mule"
-          duration="1:02:42"
-          img="/topChartImage2.svg"
-        />
-        <TopChart
-          title="Tomorrow’s tunes"
-          artist="Obi Datti"
-          duration="2:01:25"
-          img="/topChartImage3.svg"
-        />
-        <TopChart
-          title="Golden age of 80s"
-          artist="Sean swadder"
-          duration="2:34:45"
-          img="/topChartImage1.svg"
-        /> */}
+       
       </div>
     </div>
   );
