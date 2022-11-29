@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import LeftMenu from "../components/LeftMenu";
 import data from "../data";
 
-const myCollections = () => {
+const MyCollections = () => {
   return (
     <Layout playingNow={data}>
     <div className="flex flex-row w-full gap-6 ">
@@ -33,7 +33,7 @@ const myCollections = () => {
   );
 };
 
-export default myCollections;
+export default MyCollections;
 
 const CollectionBox = ({ img }) => {
   return (
