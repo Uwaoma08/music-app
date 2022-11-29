@@ -18,7 +18,7 @@ export default function Home() {
           <div className="flex-grow lg:mr-6 mr-0 lg:w-full">
             <Hero />
           </div>
-          <div className="w-full lg:w-[50%] h-[350px] lg:mt-4 overflow-y-auto scrollbar-hide">
+          <div className="w-full lg:w-[50%] h-[350px] lg:mt-4  scrollbar-hide">
              <TopCharts /> 
           </div>
         </div>
