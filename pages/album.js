@@ -6,7 +6,7 @@ import data from "../data";
 import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 
-const album = () => {
+const Album = () => {
   const router = useRouter();
 
   const { anything } = router.query;
@@ -115,4 +115,4 @@ const album = () => {
   );
 };
 
-export default album;
+export default Album;
