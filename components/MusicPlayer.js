@@ -44,15 +44,15 @@ const MusicPlayer = ({ playingNow}) => {
     audioElem.current.currentTime = divprogress / 100 * currentSong.length;
   };
   
-  const skipBack = ()=>{
-    const index = songs.findIndex( x =>x.title == currentSong.title);
-    if(index == 0){
-      setCurrentSong(songs[songs.length - 1])
-    }else {
-      setCurrentSong(songs[index - 1])
-    }
-    audioElem.current.currentTime = 0
-  }
+//   const skipBack = ()=>{
+//     const index = songs.findIndex( x =>x.title == currentSong.title);
+//     if(index == 0){
+//       setCurrentSong(songs[songs.length - 1])
+//     }else {
+//       setCurrentSong(songs[index - 1])
+//     }
+//     audioElem.current.currentTime = 0
+//   }
 
   return (
     <>
@@ -77,7 +77,7 @@ const MusicPlayer = ({ playingNow}) => {
             </div>
             <div className=" flex flex-row gap-6">
               <img src="/shuffle.svg"  />
-              <img src="/previous.svg" onClick={skipBack} />
+              <img src="/previous.svg"/>
 
               <div
                 className="bg-yellow-400 text-center rounded-full p-2 flex items-center justify-center"
