@@ -86,8 +86,8 @@ const Album = () => {
     
 
       <div className=" z-10 relative mt-10  ">
-        {/* <div className="mb-4">
-          {NewData[constData || secondArray|| thirdArray || 0].item.map((item, index) => {
+        <div className="mb-4">
+          {NewData[0].item.map((item, index) => {
             return (
               <AllSongsMobile
                 title={item.title}
@@ -99,7 +99,7 @@ const Album = () => {
               />
             );
           })}
-        </div> */}
+        </div>
 
         <div className="lg:block md:block hidden">
           <div className="mb-6">
