@@ -44,7 +44,7 @@ const Album = () => {
         <div className="flex lg:flex-row md:flex-row md:gap-6 lg:gap-20 gap-20 flex-col  mt-10 items-center w-full">
           <img
             src={activeItem.images.background}
-            className="h-[288px] w-[284px] rounded-3xl"
+            className="lg:h-[288px] md:h-[288px] lg:w-[284px] md:w-[284px] h-[260px] lg:mt-0 md:mt-0 mt-8 rounded-3xl "
           />
           <div className="">
             <h1
