@@ -9,6 +9,8 @@ const MusicPlayer = ({ playingNow}) => {
   const audioElem = useRef();
   const clickRef = useRef();
   const songs = playingNow.hub.actions[1].uri;
+
+
  
  
   useEffect(() => {

@@ -14,7 +14,7 @@ const Album = () => {
   // const [activeItem, setActiveItem] = useState(data.playlist[anotherthing || something || 0].items[anything || 0 ])
   const [activeItem, setActiveItem] = useState(NewData[thirdArray || secondArray|| 0].item[constData || 0]);
 
-  // console.log(thirdArray)
+  console.log({activeItem})
 
   
 
