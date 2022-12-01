@@ -1,20 +1,23 @@
 import React from "react";
 import HeartIcon from "./Icons/HeartIcon";
-import data from "../data";
+import NewData from "./NewData";
 import Link from "next/link";
 
 const TopCharts = () => {
+
+  const topChartData = NewData[0].item
+
   return (
     <div className=" relative lg:mt-0 mt-10  ">
       <h1 className="text-white text-2xl font-bold mb-4 text-center md:mb-10 lg:mb-4">
         Top charts
       </h1>
       <div className="flex gap-4 lg:flex-col flex-row overflow-x-auto scrollbar-hide shrink-0">
-        {data.map((item, index) => {
+        {topChartData.map((item, index) => {
           return (
             <Link
             key={index}
-            href={{ pathname: "/album", query: { anything: index} }}
+            href={{ pathname: "/album", query: {constData: index, firstArray: 0 } }}
           >
         
             <TopChart

@@ -2,22 +2,27 @@ import React, { useState } from "react";
 import LeftMenu from "../components/LeftMenu";
 import AllSongsMobile from "../components/AllSongsMobile";
 import AllSongsDesktop from "../components/AllSongsDesktop";
-import data from "../data";
+import NewData from "../components/NewData";
 import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 
 const Album = () => {
   const router = useRouter();
 
-  const { anything } = router.query;
+  const { constData, firstArray, secondArray, thirdArray } = router.query;
 
   // const [activeItem, setActiveItem] = useState(data.playlist[anotherthing || something || 0].items[anything || 0 ])
-  const [activeItem, setActiveItem] = useState(data[anything || 0]);
+  const [activeItem, setActiveItem] = useState(NewData[thirdArray || secondArray|| 0].item[constData || 0]);
+
+  // console.log(thirdArray)
+
+  
+
 
   function convertTime(newTime) {
     return new Date(newTime).toTimeString().slice(3, 9);
   }
-  console.log(activeItem);
+ 
 
   return (
     <Layout playingNow={activeItem}>
@@ -78,9 +83,11 @@ const Album = () => {
         </div>
       </div>
 
+    
+
       <div className=" z-10 relative mt-10  ">
-        <div className="mb-4">
-          {data.map((item, index) => {
+        {/* <div className="mb-4">
+          {NewData[constData || secondArray|| thirdArray || 0].item.map((item, index) => {
             return (
               <AllSongsMobile
                 title={item.title}
@@ -92,11 +99,11 @@ const Album = () => {
               />
             );
           })}
-        </div>
+        </div> */}
 
         <div className="lg:block md:block hidden">
           <div className="mb-6">
-            {data.map((item, index) => {
+            {NewData[0].item.map((item, index) => {
               return (
                 <AllSongsDesktop
                   title={item.title}
