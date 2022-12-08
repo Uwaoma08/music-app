@@ -1,22 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import LeftMenu from "../components/LeftMenu";
 import AllSongsMobile from "../components/AllSongsMobile";
 import AllSongsDesktop from "../components/AllSongsDesktop";
 import NewData from "../components/NewData";
 import { useRouter } from "next/router";
 import Layout from "../components/Layout";
+import { PlayingNowContext } from "../contexts/PlayingNowContext";
 
 const Album = () => {
   const router = useRouter();
+  const {music, setMusic} = useContext(PlayingNowContext);
+  const activeItem = music
 
   const { constData, firstArray, secondArray, thirdArray } = router.query;
 
   // const [activeItem, setActiveItem] = useState(data.playlist[anotherthing || something || 0].items[anything || 0 ])
-  const [activeItem, setActiveItem] = useState(NewData[thirdArray || secondArray|| 0].item[constData || 0]);
-
-  console.log({activeItem})
-
-  
+  // const [activeItem, setActiveItem] = useState(NewData[thirdArray || secondArray|| 0].item[constData || 0]); 
 
 
   function convertTime(newTime) {
@@ -25,7 +24,7 @@ const Album = () => {
  
 
   return (
-    <Layout playingNow={activeItem}>
+    <Layout>
       <img
         src={activeItem.images.background}
         className=" lg:hidden md:hidden absolute top-0 left-0 z-1 w-full  "
@@ -95,7 +94,7 @@ const Album = () => {
                 img={item.images.background}
                 key={index}
                 // duration={convertTime(item.track.duration_ms)}
-                onClick={() => setActiveItem(item)}
+                onClick={() => setMusic(item)}
               />
             );
           })}
@@ -111,7 +110,7 @@ const Album = () => {
                   img={item.images.background}
                   key={index}
                   // duration={convertTime(item.track.duration_ms)}
-                  onClick={() => setActiveItem(item)}
+                  onClick={() => setMusic(item)}
                 />
               );
             })}

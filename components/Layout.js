@@ -8,7 +8,7 @@ const Layout = ({ children, playingNow }) => {
     <div>
       <Header />
       <div>{children}</div>
-      <MusicPlayer playingNow={playingNow}/>
+      <MusicPlayer />
     </div>
   );
 };

@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Release from "./Release";
 import NewData from "./NewData";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import axios from "axios";
+import { PlayingNowContext } from "../contexts/PlayingNowContext";
 
 const NewRelease = () => {
+
+  const {setMusic} = useContext(PlayingNowContext);
+  const router = useRouter()
+  const goNextPage = (theMusic)=>{
+    setMusic(theMusic)
+    return router.push("/album")
+  }
   const newReleaseData = NewData[1].item;
 
   // const query = useQuery("newReleaseApi", ()=>{
@@ -30,17 +39,14 @@ const NewRelease = () => {
       <div className="flex flex-row gap-4 overflow-x-auto scrollbar-hide">
         {newReleaseData.map((item, index) => {
           return (
-            <Link
-              key={index}
-              href={{ pathname: "/album", query: { constData: index, secondArray: 1 } }}
-            >
-              {" "}
+         <div onClick={()=>goNextPage(item)}>
               <Release
                 title={item.title}
                 artist={item.artists[0].alias}
                 img={item.images.background}
+                key ={index}
               />
-            </Link>
+           </div> 
           );
         })}
       </div>

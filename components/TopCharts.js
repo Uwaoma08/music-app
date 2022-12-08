@@ -1,11 +1,21 @@
-import React from "react";
+import React, {useContext} from "react";
 import HeartIcon from "./Icons/HeartIcon";
 import NewData from "./NewData";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { PlayingNowContext } from "../contexts/PlayingNowContext";
 
 const TopCharts = () => {
 
+  const {setMusic} = useContext(PlayingNowContext);
   const topChartData = NewData[0].item
+  const router = useRouter()
+
+  // const goNextPage= () => router.push("/album")
+  const goNextPage = (theMusic)=>{
+    setMusic(theMusic)
+    return router.push("/album")
+  }
 
   return (
     <div className=" relative lg:mt-0 mt-10  ">
@@ -15,19 +25,17 @@ const TopCharts = () => {
       <div className="flex gap-4 lg:flex-col flex-row overflow-x-auto scrollbar-hide shrink-0">
         {topChartData.map((item, index) => {
           return (
-            <Link
-            key={index}
-            href={{ pathname: "/album", query: {constData: index, firstArray: 0 } }}
-          >
-        
-            <TopChart
+      
+            <div onClick={()=>goNextPage(item)}>
+              <TopChart
               title={item.title}
               artist={item.artists[0].alias}
               img={item.images.background}
               // duration={item.track.duration_ms}
               key={index}
             />
-            </Link>
+            </div>
+           
           );
         })}
        
@@ -42,7 +50,7 @@ const TopChart = ({ title, artist, duration, img }) => {
   return (
 
   
-    <div className="flex flex-row items-center md:justify-between p-4 rounded-2xl bg-bg2 lg:w-full w-[223px] shrink-0 ">
+    <div className="flex flex-row items-center md:justify-between p-4 rounded-2xl bg-bg2 lg:w-full w-[223px] shrink-0 cursor-pointer ">
       <div className="flex lg:items-center items-start  lg:flex-row  flex-col lg:mr-0 justify-start w-full ">
         <div className="">
           {" "}

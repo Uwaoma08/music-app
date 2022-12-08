@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import Release from "./Release";
 import NewData from "./NewData";
-import Link from "next/link";
+import { useRouter } from "next/router";
+import { PlayingNowContext } from "../contexts/PlayingNowContext";
+
 
 const Popular = () => {
 
+  const {setMusic} = useContext(PlayingNowContext);
   const popularData = NewData[2].item;
+  const router = useRouter();
+
+  const goNextPage = (theMusic)=>{
+    setMusic(theMusic)
+    return router.push("/album")
+  }
 
   return (
     <div className="mt-10">
@@ -15,18 +24,15 @@ const Popular = () => {
       <div className="flex flex-row gap-4 overflow-x-auto scrollbar-hide">
         {popularData.map((item, index) => {
           return (
-            <Link
-              key={index}
-              href={{ pathname: "/album", query: {constData: index, thirdArray: 2  } }}
-            >
-              {" "}
+            
+              <div onClick={()=>goNextPage(item)}>
               <Release
                 title={item.title}
                 artist={item.artists[0].alias}
                 img={item.images.background}
                 key={index}
               />
-            </Link>
+            </div>
           );
         })}
       </div>
